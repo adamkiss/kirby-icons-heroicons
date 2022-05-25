@@ -1,0 +1,24 @@
+{
+    "name": "adamkiss/kirby-icons-heroicons",
+    "description": "Heroicons snippets for Kirby CMS",
+    "type": "kirby-plugin",
+    "keywords": ["kirby", "kirby-plugin", "icons", "snippets"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Adam Kiss",
+        "email": "iam@adamkiss.com",
+        "homepage": "https://adamkiss.com",
+        "role": "Developer"
+      },
+      {
+        "name": "Refactoring UI",
+        "homepage": "https://heroicons.com",
+        "role": "Icons author"
+      }
+    ],
+    "require": {
+      "getkirby/composer-installer": "^1.1"
+    }
+  }
+  
