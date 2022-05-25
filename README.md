@@ -1,6 +1,12 @@
-# Heroicons for Kirby
+<h1 align="center">Heroicons for Kirby</h1>
 
-[Heroicons](https://heroicons.com) icons by Refactoring UI, packaged as snippets with the svg code inline for the [Kirby CMS](https://getkirby.com/).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/.github/logo.svg" alt="Heroicons">
+</p>
+
+<p align="center">
+  A set of 450+ free MIT-licensed high-quality SVG icons for you to use in your Kirby CMS Projects. <br>Packaged as a set of Kirby snippets, allowing you to embed them easily.
+<p>
 
 ## Installation
 
@@ -17,5 +23,8 @@ composer require adamkiss/kirby-icons-heroicons
 snippet('heroicons/solid/check');
 
 // or add additional classes
-snippet('heroicons/ouline/check', ['class' => 'red-color']);
+snippet('heroicons/ouline/check', [
+    'class' => 'red-color',
+    'strokeWidth' => 3 // Outline icons have a modifiable stroke width as well
+]);
 ```
