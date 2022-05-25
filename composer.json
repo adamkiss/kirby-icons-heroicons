@@ -1,6 +1,6 @@
 {
     "name": "adamkiss/kirby-icons-heroicons",
-    "description": "Heroicons snippets for Kirby CMS",
+    "description": "Heroicons as snippets for Kirby CMS",
     "type": "kirby-plugin",
     "keywords": ["kirby", "kirby-plugin", "icons", "snippets"],
     "license": "MIT",
