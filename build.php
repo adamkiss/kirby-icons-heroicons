@@ -34,3 +34,33 @@ foreach ($outline as $file) {
 	$name = __DIR__ . '/snippets/solid/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
+
+$snippets = [];
+foreach(new DirectoryIterator(__DIR__ . '/snippets/solid') as $file) {
+	if ($file->getType() !== 'file') { continue; }
+
+	$baseName = $file->getBasename('.php');
+	$loadPath = "/snippets/solid/{$baseName}.php";
+	$snippets []= compact('baseName', 'loadPath');
+}
+foreach(new DirectoryIterator(__DIR__ . '/snippets/outline') as $file) {
+	if ($file->getType() !== 'file') { continue; }
+
+	$baseName = $file->getBasename('.php');
+	$loadPath = "/snippets/outline/{$baseName}.php";
+	$snippets []= compact('baseName', 'loadPath');
+}
+$snippetsJoined = implode("\n", array_map(function($snippet) {
+	return "		'{$snippet['baseName']}' => __DIR__ . '{$snippet['loadPath']}',";
+}, $snippets));
+
+file_put_contents('index.php', <<<PHP
+<?php
+use Kirby\Cms\App;
+
+App::plugin('adamkiss/kirby-icons-heroicons', [
+	'snippets' => [
+		{$snippetsJoined}
+	]
+]);
+PHP);
