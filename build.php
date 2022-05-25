@@ -60,7 +60,7 @@ use Kirby\Cms\App;
 
 App::plugin('adamkiss/kirby-icons-heroicons', [
 	'snippets' => [
-		{$snippetsJoined}
+{$snippetsJoined}
 	]
 ]);
 PHP);
