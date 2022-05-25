@@ -37,18 +37,20 @@ foreach(new DirectoryIterator(__DIR__ . '/snippets/solid') as $file) {
 	if ($file->getType() !== 'file') { continue; }
 
 	$baseName = $file->getBasename('.php');
+	$snippetName = "heroicons/solid/$baseName";
 	$loadPath = "/snippets/solid/{$baseName}.php";
-	$snippets []= compact('baseName', 'loadPath');
+	$snippets []= compact('snippetName', 'loadPath');
 }
 foreach(new DirectoryIterator(__DIR__ . '/snippets/outline') as $file) {
 	if ($file->getType() !== 'file') { continue; }
 
 	$baseName = $file->getBasename('.php');
+	$snippetName = "heroicons/outline/{$baseName}";
 	$loadPath = "/snippets/outline/{$baseName}.php";
-	$snippets []= compact('baseName', 'loadPath');
+	$snippets []= compact('snippetName', 'loadPath');
 }
 $snippetsJoined = implode("\n", array_map(function($snippet) {
-	return "		'{$snippet['baseName']}' => __DIR__ . '{$snippet['loadPath']}',";
+	return "		'{$snippet['snippetName']}' => __DIR__ . '{$snippet['loadPath']}',";
 }, $snippets));
 
 file_put_contents('index.php', <<<PHP
