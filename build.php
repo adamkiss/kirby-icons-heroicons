@@ -8,8 +8,20 @@
 
 mkdir(__DIR__ . '/snippets/solid', recursive: true);
 mkdir(__DIR__ . '/snippets/outline', recursive: true);
+mkdir(__DIR__ . '/snippets/mini', recursive: true);
 
-foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/solid') as $file) {
+foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $file) {
+	if ($file->getType() !== 'file') {
+		continue;
+	}
+
+	$icon = file_get_contents($file->getPathname());
+	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
+	$name = __DIR__ . '/snippets/mini/' . str_replace('svg', 'php', $file->getFilename());
+	file_put_contents($name, $icon);
+}
+
+foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/solid') as $file) {
 	if ($file->getType() !== 'file') {
 		continue;
 	}
@@ -20,19 +32,27 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/solid') as $file)
 	file_put_contents($name, $icon);
 }
 
-foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/outline') as $file) {
+foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/outline') as $file) {
 	if ($file->getType() !== 'file') {
 		continue;
 	}
 
 	$icon = file_get_contents($file->getPathname());
 	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
-	$icon = str_replace('stroke-width="2"', 'stroke-width="<?= $strokeWidth ?? 2 ?>"', $icon);
+	$icon = str_replace('stroke-width="1.5"', 'stroke-width="<?= $strokeWidth ?? 1.5 ?>"', $icon);
 	$name = __DIR__ . '/snippets/outline/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
 
 $snippets = [];
+foreach(new DirectoryIterator(__DIR__ . '/snippets/mini') as $file) {
+	if ($file->getType() !== 'file') { continue; }
+
+	$baseName = $file->getBasename('.php');
+	$snippetName = "heroicons/mini/$baseName";
+	$loadPath = "/snippets/mini/{$baseName}.php";
+	$snippets []= compact('snippetName', 'loadPath');
+}
 foreach(new DirectoryIterator(__DIR__ . '/snippets/solid') as $file) {
 	if ($file->getType() !== 'file') { continue; }
 
