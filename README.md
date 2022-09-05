@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  A set of 450+ free MIT-licensed high-quality SVG icons for you to use in your Kirby CMS Projects. <br>Packaged as a set of Kirby snippets, allowing you to embed them easily. Check out the [original project](https://github.com/tailwindlabs/heroicons) for more information.
+  A set of 450+ free MIT-licensed high-quality SVG icons for you to use in your Kirby CMS Projects. <br>Packaged as a set of Kirby snippets, allowing you to embed them easily. Check out the <a href="https://github.com/tailwindlabs/heroicons">original project</a> for more information.
 <p>
 
 ## Installation
