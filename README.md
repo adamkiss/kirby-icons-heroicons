@@ -1,7 +1,12 @@
 <h1 align="center">Heroicons for Kirby</h1>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/.github/logo.svg" alt="Heroicons">
+  <a href="https://heroicons.com/#gh-light-mode-only" target="_blank">
+    <img src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/.github/logo-light.svg" alt="Heroicons" width="300">
+  </a>
+  <a href="https://heroicons.com/#gh-dark-mode-only" target="_blank">
+    <img src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/.github/logo-dark.svg" alt="Heroicons" width="300">
+  </a>
 </p>
 
 <p align="center">
