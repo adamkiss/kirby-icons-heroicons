@@ -27,8 +27,11 @@ composer require adamkiss/kirby-icons-heroicons
 // use an icon as is
 snippet('heroicons/solid/check');
 
+// or
+snippet('heroicons/mini/check');
+
 // or add additional classes
-snippet('heroicons/ouline/check', [
+snippet('heroicons/outline/check', [
     'class' => 'red-color',
     'strokeWidth' => 3 // Outline icons have a modifiable stroke width as well
 ]);
