@@ -1,7 +1,7 @@
 <?php
 use Kirby\Cms\App;
 
-App::plugin('adamkiss/kirby-icons-heroicons', [
+App::plugin('adamkiss/heroicons', [
 	'snippets' => [
 		'heroicons/mini/archive-box-x-mark' => __DIR__ . '/snippets/mini/archive-box-x-mark.php',
 		'heroicons/mini/rss' => __DIR__ . '/snippets/mini/rss.php',

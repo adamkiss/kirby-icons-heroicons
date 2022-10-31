@@ -77,7 +77,7 @@ file_put_contents('index.php', <<<PHP
 <?php
 use Kirby\Cms\App;
 
-App::plugin('adamkiss/kirby-icons-heroicons', [
+App::plugin('adamkiss/heroicons', [
 	'snippets' => [
 {$snippetsJoined}
 	]
