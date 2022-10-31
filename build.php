@@ -6,9 +6,9 @@
 	modifies them to add the check for attributes and saves them as PHP files
 */
 
-mkdir(__DIR__ . '/snippets/solid', recursive: true);
-mkdir(__DIR__ . '/snippets/outline', recursive: true);
-mkdir(__DIR__ . '/snippets/mini', recursive: true);
+@mkdir(__DIR__ . '/snippets/solid', recursive: true);
+@mkdir(__DIR__ . '/snippets/outline', recursive: true);
+@mkdir(__DIR__ . '/snippets/mini', recursive: true);
 
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $file) {
 	if ($file->getType() !== 'file') {
