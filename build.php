@@ -18,6 +18,7 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/16/solid') as $fi
 
 	$icon = file_get_contents($file->getPathname());
 	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
+	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	$name = __DIR__ . '/snippets/micro/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
@@ -29,6 +30,7 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $fi
 
 	$icon = file_get_contents($file->getPathname());
 	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
+	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	$name = __DIR__ . '/snippets/mini/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
@@ -41,6 +43,7 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/solid') as $fi
 	$icon = file_get_contents($file->getPathname());
 	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
 	$name = __DIR__ . '/snippets/solid/' . str_replace('svg', 'php', $file->getFilename());
+	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	file_put_contents($name, $icon);
 }
 
@@ -52,6 +55,7 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/outline') as $
 	$icon = file_get_contents($file->getPathname());
 	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
 	$icon = str_replace('stroke-width="1.5"', 'stroke-width="<?= $strokeWidth ?? 1.5 ?>"', $icon);
+	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	$name = __DIR__ . '/snippets/outline/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
