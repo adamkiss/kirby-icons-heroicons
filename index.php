@@ -1,12 +1,22 @@
 <?php
 use Kirby\Cms\App;
+use Kirby\Toolkit\F;
 
 class Heroicons
 {
 	public static function folder(): string
 	{
+		$asset = kirby()->plugins()['adamkiss/heroicons']->asset('spritesheet.svg');
+		if (! F::exists($asset->mediaRoot())) {
+			F::copy(
+				__DIR__ . '/assets/spritesheet.svg',
+				$asset->mediaRoot(),
+				true // to overwrite the symlink that might exist at the location
+			);
+		}
+
 		return pathinfo(
-			kirby()->plugins()['adamkiss/heroicons']->assets()->first()->mediaRoot(),
+			$asset->mediaRoot(),
 			PATHINFO_DIRNAME
 		);
 	}
