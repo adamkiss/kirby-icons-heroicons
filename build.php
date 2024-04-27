@@ -9,6 +9,18 @@
 @mkdir(__DIR__ . '/snippets/solid', recursive: true);
 @mkdir(__DIR__ . '/snippets/outline', recursive: true);
 @mkdir(__DIR__ . '/snippets/mini', recursive: true);
+@mkdir(__DIR__ . '/snippets/micro', recursive: true);
+
+foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/16/solid') as $file) {
+	if ($file->getType() !== 'file') {
+		continue;
+	}
+
+	$icon = file_get_contents($file->getPathname());
+	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
+	$name = __DIR__ . '/snippets/micro/' . str_replace('svg', 'php', $file->getFilename());
+	file_put_contents($name, $icon);
+}
 
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $file) {
 	if ($file->getType() !== 'file') {
@@ -45,6 +57,14 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/outline') as $
 }
 
 $snippets = [];
+foreach(new DirectoryIterator(__DIR__ . '/snippets/micro') as $file) {
+	if ($file->getType() !== 'file') { continue; }
+
+	$baseName = $file->getBasename('.php');
+	$snippetName = "heroicons/micro/$baseName";
+	$loadPath = "/snippets/micro/{$baseName}.php";
+	$snippets []= compact('snippetName', 'loadPath');
+}
 foreach(new DirectoryIterator(__DIR__ . '/snippets/mini') as $file) {
 	if ($file->getType() !== 'file') { continue; }
 
