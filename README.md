@@ -33,6 +33,50 @@ snippet('heroicons/mini/check');
 // or add additional classes
 snippet('heroicons/outline/check', [
     'class' => 'red-color',
+    'attributes' => 'aria-hidden="true" data-hook="something"' // You can also add custom attributes
     'strokeWidth' => 3 // Outline icons have a modifiable stroke width as well
 ]);
 ```
+
+Available variants/sizes:
+
+- outline (24px)
+- solid (24px)
+- mini (20px)
+- micro (16px)
+
+By default, no class is used, and the default attribute is `aria-hidden="true"`. If you add an attribute and want to keep the `aria-hidden` attribute, you have to add it as well.
+
+## Icon Field support (WIP)
+
+When you install Heroicons and Icon Field at the same time, you can use all Heroicons as the options in the Icon Field:
+
+```php
+// in your config.php, configure icon-field to use Heroicons by default
+'tobimori.icon-field' => [
+    'folder' => fn() => \Heroicons::folder(),
+    'sprite' => fn() => \Heroicons::sprite(),
+],
+```
+
+```yml
+# In your bluprints, keep the icon field folder/sprite blank for the
+# default to to be picked upw
+fields:
+  icon:
+    label: Icon
+    type: icon
+    max: 1
+```
+
+And then, once the you've set up the icon in the panel, you can use it in your templates/snippets like so:
+
+```php
+<?= snippet("heroicons/mini/{$page->icon()}") ?>
+```
+
+For more information, you can check out the [Kirby Icon Field documentation](https://github.com/tobimori/kirby-icon-field#readme).
+
+## License
+
+MIT (c) 2024 Adam Kiss for the plugin, Tailwind Labs for the Heroicons
