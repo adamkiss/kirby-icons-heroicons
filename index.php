@@ -1179,5 +1179,8 @@ App::plugin('adamkiss/heroicons', [
 		'heroicons/outline/squares-2x2' => __DIR__ . '/snippets/outline/squares-2x2.php',
 		'heroicons/outline/arrow-long-right' => __DIR__ . '/snippets/outline/arrow-long-right.php',
 		'heroicons/outline/cube-transparent' => __DIR__ . '/snippets/outline/cube-transparent.php',
-	]
+	],
+	'assets' => [
+		'spritesheet' => __DIR__ . '/assets/spritesheet.svg',
+	],
 ]);

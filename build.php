@@ -10,18 +10,33 @@
 @mkdir(__DIR__ . '/snippets/outline', recursive: true);
 @mkdir(__DIR__ . '/snippets/mini', recursive: true);
 @mkdir(__DIR__ . '/snippets/micro', recursive: true);
+@mkdir(__DIR__ . '/assets', recursive: true);
 
+$spritesheet = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
+
+/**
+ * Generate snippets
+ */
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/16/solid') as $file) {
 	if ($file->getType() !== 'file') {
 		continue;
 	}
 
-	$icon = file_get_contents($file->getPathname());
-	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $icon);
+	$original = file_get_contents($file->getPathname());
+
+	$icon = str_replace('<svg', '<svg class="<?= $class ?? \'\' ?>"', $original);
 	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	$name = __DIR__ . '/snippets/micro/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
+
+	// Also generate sprite sheet from micro icons
+	$id = str_replace('.svg', '', $file->getFilename());
+	$symbol = preg_replace('/<svg[^>]*>/', "<symbol id=\"$id\" viewBox=\"0 0 16 16\" fill=\"none\">", $original);
+	$symbol = str_replace('</svg>', '</symbol>', $symbol);
+	$symbol = str_replace('<path', '<path fill="currentColor"', $symbol);
+	$spritesheet .= $symbol;
 }
+$spritesheet .= '</svg>';
 
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $file) {
 	if ($file->getType() !== 'file') {
@@ -34,7 +49,6 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/20/solid') as $fi
 	$name = __DIR__ . '/snippets/mini/' . str_replace('svg', 'php', $file->getFilename());
 	file_put_contents($name, $icon);
 }
-
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/solid') as $file) {
 	if ($file->getType() !== 'file') {
 		continue;
@@ -46,7 +60,6 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/solid') as $fi
 	$icon = str_replace('aria-hidden="true" data-slot="icon"', '<?= $attributes ?? \'aria-hidden="true"\' ?>', $icon);
 	file_put_contents($name, $icon);
 }
-
 foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/outline') as $file) {
 	if ($file->getType() !== 'file') {
 		continue;
@@ -60,6 +73,9 @@ foreach (new DirectoryIterator(__DIR__ . '/heroicons/optimized/24/outline') as $
 	file_put_contents($name, $icon);
 }
 
+/**
+ * Generate plugin index.php
+ */
 $snippets = [];
 foreach(new DirectoryIterator(__DIR__ . '/snippets/micro') as $file) {
 	if ($file->getType() !== 'file') { continue; }
@@ -104,6 +120,14 @@ use Kirby\Cms\App;
 App::plugin('adamkiss/heroicons', [
 	'snippets' => [
 {$snippetsJoined}
-	]
+	],
+	'assets' => [
+		'spritesheet' => __DIR__ . '/assets/spritesheet.svg',
+	],
 ]);
 PHP);
+
+/**
+ * Asset sprite for kirby-icon-field
+ */
+file_put_contents(__DIR__ . '/assets/spritesheet.svg', $spritesheet);
