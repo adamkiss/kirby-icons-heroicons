@@ -1,6 +1,21 @@
 <?php
 use Kirby\Cms\App;
 
+class Heroicons
+{
+	public static function folder(): string
+	{
+		return pathinfo(
+			kirby()->plugins()['adamkiss/heroicons']->assets()->first()->mediaRoot(),
+			PATHINFO_DIRNAME
+		);
+	}
+	public static function sprite() : string
+	{
+		return 'spritesheet.svg';
+	}
+}
+
 App::plugin('adamkiss/heroicons', [
 	'snippets' => [
 		'heroicons/micro/archive-box-x-mark' => __DIR__ . '/snippets/micro/archive-box-x-mark.php',
@@ -1179,8 +1194,5 @@ App::plugin('adamkiss/heroicons', [
 		'heroicons/outline/squares-2x2' => __DIR__ . '/snippets/outline/squares-2x2.php',
 		'heroicons/outline/arrow-long-right' => __DIR__ . '/snippets/outline/arrow-long-right.php',
 		'heroicons/outline/cube-transparent' => __DIR__ . '/snippets/outline/cube-transparent.php',
-	],
-	'assets' => [
-		'spritesheet' => __DIR__ . '/assets/spritesheet.svg',
 	],
 ]);
