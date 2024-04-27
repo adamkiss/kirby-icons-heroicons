@@ -117,12 +117,24 @@ file_put_contents('index.php', <<<PHP
 <?php
 use Kirby\Cms\App;
 
+class Heroicons
+{
+	public static function folder(): string
+	{
+		return pathinfo(
+			kirby()->plugins()['adamkiss/heroicons']->assets()->first()->mediaRoot(),
+			PATHINFO_DIRNAME
+		);
+	}
+	public static function sprite() : string
+	{
+		return 'spritesheet.svg';
+	}
+}
+
 App::plugin('adamkiss/heroicons', [
 	'snippets' => [
 {$snippetsJoined}
-	],
-	'assets' => [
-		'spritesheet' => __DIR__ . '/assets/spritesheet.svg',
 	],
 ]);
 PHP);
